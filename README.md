@@ -1,6 +1,8 @@
 
 # Ridiculously Responsive Social Sharing Buttons
 
+This is a Wordpress plugin adapted from the original RRSSB project you can find [here](https://github.com/kni-labs/rrssb).
+
 [<img align="right" src="media/rrssb-preview.png" width="359" height="auto"/>](http://kurtnoble.com/labs/rrssb/) Love them or hate them social sharing buttons appear to be with us for a while. It seemed like [we](http://www.kurtnoble.com) were constantly making custom buttons for every single project, so we decided to create a super flexible system that would work in any container.
 
 RRSSB is built with [SASS](http://sass-lang.com/), so you can easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support. Add or remove icons as you see fit &mdash; the rest will fill in automagically in the container.
@@ -17,7 +19,6 @@ Adding a class of `popup` to the anchor tag for each share button will make the 
 
 RRSSB is also registered with Bower under the name RRSSB. Use the following command to find it: `bower search rrssb`
 
-Need it as [Wordpress plugin](http://wordpress.org/plugins/ridiculously-responsive-social-sharing-buttons/)? 
 
 ### About
 
