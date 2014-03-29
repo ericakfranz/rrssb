@@ -18,165 +18,188 @@
 */
 
 
-;(function(window, $, undefined) {
+;(function(window, jQuery, undefined) {
 	'use strict';
-
-	/*
-	 * Global variables
-	 */
-	var smallBtnCount;
 
 
 	/*
 	 * Utility functions
 	 */
 	var setPercentBtns = function() {
-		var numOfButtons = $('.rrssb-buttons li').length;
-		var initBtnWidth = 100 / numOfButtons;
+		// loop through each instance of buttons
+		jQuery('.rrssb-buttons').each(function(index) {
+			var self = jQuery(this);
+			var numOfButtons = jQuery('li', self).length;
+			var initBtnWidth = 100 / numOfButtons;
 
-		// set initial width of buttons
-		$('.rrssb-buttons li').css('width', initBtnWidth + '%').attr('data-initwidth',initBtnWidth);
+			// set initial width of buttons
+			jQuery('li', self).css('width', initBtnWidth + '%').attr('data-initwidth',initBtnWidth);
+		});
 	};
 
 	var makeExtremityBtns = function() {
-		//get button width
-		var containerWidth = parseFloat($('.rrssb-buttons').width());
-		var buttonWidth = $('.rrssb-buttons li').not('.small').first().width();
+		// loop through each instance of buttons
+		jQuery('.rrssb-buttons').each(function(index) {
+			var self = jQuery(this);
+			//get button width
+			var containerWidth = parseFloat(jQuery(self).width());
+			var buttonWidth = jQuery('li', self).not('.small').first().width();
+			var smallBtnCount = jQuery('li.small', self).length;
 
-		// enlarge buttons if they get wide enough
-		if (buttonWidth > 170 && smallBtnCount < 1) {
-			$('.rrssb-buttons').addClass('large-format');
-		} else {
-			$('.rrssb-buttons').removeClass('large-format');
-		}
+			// enlarge buttons if they get wide enough
+			if (buttonWidth > 170 && smallBtnCount < 1) {
+				jQuery(self).addClass('large-format');
+			} else {
+				jQuery(self).removeClass('large-format');
+			}
 
-		if (containerWidth < 200) {
-			$('.rrssb-buttons').removeClass('small-format').addClass('tiny-format');
-		} else {
-			$('.rrssb-buttons').removeClass('tiny-format');
-		}
+			if (containerWidth < 200) {
+				jQuery(self).removeClass('small-format').addClass('tiny-format');
+			} else {
+				jQuery(self).removeClass('tiny-format');
+			}
+		});
 	};
 
 	var backUpFromSmall = function() {
-		var totalBtnSze = 0, totalTxtSze = 0, upCandidate, nextBackUp;
+		// loop through each instance of buttons
+		jQuery('.rrssb-buttons').each(function(index) {
+			var self = jQuery(this);
+			var totalBtnSze = 0, totalTxtSze = 0, upCandidate, nextBackUp;
+			var smallBtnCount = jQuery('li.small', self).length;
 
-		if (smallBtnCount === $('.rrssb-buttons li').length) {
-			var btnCalc = smallBtnCount * 42;
-			var containerWidth = parseFloat($('.rrssb-buttons').width());
-			upCandidate = $('.rrssb-buttons li.small').first();
-			nextBackUp = parseFloat($(upCandidate).attr('data-size')) + 55;
+			if (smallBtnCount === jQuery('li', self).length) {
+				var btnCalc = smallBtnCount * 42;
+				var containerWidth = parseFloat(jQuery(self).width());
+				upCandidate = jQuery('li.small', self).first();
+				nextBackUp = parseFloat(jQuery(upCandidate).attr('data-size')) + 55;
 
-			if ((btnCalc + nextBackUp) < containerWidth) {
-				$('.rrssb-buttons').removeClass('small-format');
-				$('.rrssb-buttons li.small').first().removeClass('small');
+				if ((btnCalc + nextBackUp) < containerWidth) {
+					jQuery(self).removeClass('small-format');
+					jQuery('li.small', self).first().removeClass('small');
 
-				sizeSmallBtns();
+					sizeSmallBtns();
+				}
+
+			} else {
+				jQuery('li', self).not('.small').each(function(index) {
+					var txtWidth = parseFloat(jQuery(this).attr('data-size')) + 55;
+					var btnWidth = parseFloat(jQuery(this).width());
+
+					totalBtnSze = totalBtnSze + btnWidth;
+					totalTxtSze = totalTxtSze + txtWidth;
+				});
+
+				var spaceLeft = totalBtnSze - totalTxtSze;
+				upCandidate = jQuery('li.small', self).first();
+				nextBackUp = parseFloat(jQuery(upCandidate).attr('data-size')) + 55;
+
+				if (nextBackUp < spaceLeft) {
+					jQuery(upCandidate).removeClass('small');
+					sizeSmallBtns();
+				}
 			}
-
-		} else {
-			$('.rrssb-buttons li').not('.small').each(function(index) {
-				var txtWidth = parseFloat($(this).attr('data-size')) + 55;
-				var btnWidth = parseFloat($(this).width());
-
-				totalBtnSze = totalBtnSze + btnWidth;
-				totalTxtSze = totalTxtSze + txtWidth;
-			});
-
-			var spaceLeft = totalBtnSze - totalTxtSze;
-			upCandidate = $('.rrssb-buttons li.small').first();
-			nextBackUp = parseFloat($(upCandidate).attr('data-size')) + 55;
-
-			if (nextBackUp < spaceLeft) {
-				$(upCandidate).removeClass('small');
-				sizeSmallBtns();
-			}
-		}
+		});
 	};
 
 	var checkSize = function(init) {
-		var elems = $('.rrssb-buttons li').nextAll(), count = elems.length;
+		// loop through each instance of buttons
+		jQuery('.rrssb-buttons').each(function(index) {
+			//console.log('starting check for: '+(index+1));
+			var self = jQuery(this);
+			var elems = jQuery('li', self).nextAll(), count = elems.length;
 
-		$($('.rrssb-buttons li').get().reverse()).each(function(index) {
+			// get buttons in reverse order and loop through each
+			jQuery(jQuery('li', self).get().reverse()).each(function(index, count) {
 
-			if ($(this).hasClass('small') === false) {
-				var txtWidth = parseFloat($(this).attr('data-size')) + 55;
-				var btnWidth = parseFloat($(this).width());
+				if (jQuery(this).hasClass('small') === false) {
+					var txtWidth = parseFloat(jQuery(this).attr('data-size')) + 55;
+					var btnWidth = parseFloat(jQuery(this).width());
 
-				if (txtWidth > btnWidth) {
-					var btn2small = $('.rrssb-buttons li').not('.small').last();
-					$(btn2small).addClass('small');
+					if (txtWidth > btnWidth) {
+						//console.log($(self).attr('class')+' '+$(this).attr('class')+' txtWidth: '+txtWidth+ ' & btnWidth: '+btnWidth);
+						var btn2small = jQuery('li', self).not('.small').last();
+						jQuery(btn2small).addClass('small');
+						//console.log($(btn2small).attr('class'));
+						sizeSmallBtns();
+					}
 				}
-				sizeSmallBtns();
-			}
 
-			if (!--count) backUpFromSmall();
+				if (!--count) backUpFromSmall();
+			});
 		});
 
+		// if first time running, put it through the magic layout
 		if (init === true) {
 			rrssbMagicLayout(sizeSmallBtns);
 		}
 	};
 
 	var sizeSmallBtns = function() {
-		var regButtonCount,
-				regPercent,
-				pixelsOff,
-				magicWidth,
-				smallBtnFraction;
+		// loop through each instance of buttons
+		jQuery('.rrssb-buttons').each(function(index) {
+			var self = jQuery(this);
+			var regButtonCount,
+					regPercent,
+					pixelsOff,
+					magicWidth,
+					smallBtnFraction;
 
-		// readjust buttons for small display
-		smallBtnCount = $('.rrssb-buttons li.small').length;
-		$('.smallbtnsdude span').html(smallBtnCount);
+			// readjust buttons for small display
+			var smallBtnCount = jQuery('li.small', self).length;
 
-		// make sure there are small buttons
-		if (smallBtnCount > 0 && smallBtnCount !== $('.rrssb-buttons li').length) {
-			$('.rrssb-buttons').removeClass('small-format');
+			// make sure there are small buttons
+			if (smallBtnCount > 0 && smallBtnCount !== jQuery('li', self).length) {
+				jQuery(self).removeClass('small-format');
 
-			//make sure small buttons are square when not all small
-			$('.rrssb-buttons li.small').css('width','42px');
-			pixelsOff = smallBtnCount * 42;
-			regButtonCount = $('.rrssb-buttons li').not('.small').length;
-			regPercent = 100 / regButtonCount;
-			smallBtnFraction = pixelsOff / regButtonCount;
+				//make sure small buttons are square when not all small
+				jQuery('li.small', self).css('width','42px');
+				pixelsOff = smallBtnCount * 42;
+				regButtonCount = jQuery('li', self).not('.small').length;
+				regPercent = 100 / regButtonCount;
+				smallBtnFraction = pixelsOff / regButtonCount;
 
-			if (navigator.userAgent.indexOf('Chrome') >= 0 || navigator.userAgent.indexOf('Safari') >= 0) {
-				magicWidth = '-webkit-calc('+regPercent+'% - '+smallBtnFraction+'px)';
-			} else if (navigator.userAgent.indexOf('Firefox') >= 0) {
-				magicWidth = '-moz-calc('+regPercent+'% - '+smallBtnFraction+'px)';
+				if (navigator.userAgent.indexOf('Chrome') >= 0 || navigator.userAgent.indexOf('Safari') >= 0) {
+					magicWidth = '-webkit-calc('+regPercent+'% - '+smallBtnFraction+'px)';
+				} else if (navigator.userAgent.indexOf('Firefox') >= 0) {
+					magicWidth = '-moz-calc('+regPercent+'% - '+smallBtnFraction+'px)';
+				} else {
+					magicWidth = 'calc('+regPercent+'% - '+smallBtnFraction+'px)';
+				}
+				jQuery('li', self).not('.small').css('width', magicWidth);
+
+			} else if (smallBtnCount === jQuery('li', self).length) {
+				// if all buttons are small, change back to percentage
+				jQuery(self).addClass('small-format');
+				setPercentBtns();
 			} else {
-				magicWidth = 'calc('+regPercent+'% - '+smallBtnFraction+'px)';
+				jQuery(self).removeClass('small-format');
+				setPercentBtns();
 			}
-			$('.rrssb-buttons li').not('.small').css('width', magicWidth);
+		}); //end loop
 
-		} else if (smallBtnCount === $('.rrssb-buttons li').length) {
-			// if all buttons are small, change back to percentage
-			$('.rrssb-buttons').addClass('small-format');
-			setPercentBtns();
-		} else {
-			$('.rrssb-buttons').removeClass('small-format');
-			setPercentBtns();
-		}
 		makeExtremityBtns();
 	};
 
 	var rrssbInit = function() {
+		jQuery('.rrssb-buttons').each(function(index) {
+			jQuery(this).addClass('rrssb-'+(index + 1));
+		});
+
 		setPercentBtns();
 
 		// grab initial text width of each button and add as data attr
-		$('.rrssb-buttons li .text').each(function(index) {
-			var txtWdth = parseFloat($(this).width());
-			$(this).closest('li').attr('data-size', txtWdth);
+		jQuery('.rrssb-buttons li .text').each(function(index) {
+			var txtWdth = parseFloat(jQuery(this).width());
+			jQuery(this).closest('li').attr('data-size', txtWdth);
 		});
 
 		checkSize(true);
 	};
 
 	var rrssbMagicLayout = function(callback) {
-		var containerWidth = $('.rrssb-buttons').width();
-
-		smallBtnCount = $('.rrssb-buttons li.small').length;
-
-		$('.rrssb-buttons li.small').removeClass('small');
+		//remove small buttons before each conversion try
+		jQuery('.rrssb-buttons li.small').removeClass('small');
 
 		checkSize();
 
@@ -219,14 +242,14 @@
 	 * Event listners
 	 */
 
-	$('.rrssb-buttons a.popup').on('click', function(e){
-		var _this = $(this);
+	jQuery('.rrssb-buttons a.popup').on('click', function(e){
+		var _this = jQuery(this);
 		popupCenter(_this.attr('href'), _this.find('.text').html(), 580, 470);
 		e.preventDefault();
 	});
 
 	// resize function
-	$(window).resize(function () {
+	jQuery(window).resize(function () {
 
 		rrssbMagicLayout(sizeSmallBtns);
 
@@ -236,9 +259,9 @@
 	});
 
 	// init load
-	$(document).ready(function(){
+	jQuery(document).ready(function(){
 		rrssbInit();
 	});
 
 
-})(window, $);
+})(window, jQuery);

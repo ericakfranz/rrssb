@@ -48,7 +48,7 @@ function rrssb_main($content)
 {
     if (is_single()) {
         
-		$content .= rrssb_hide_unitl_load();
+		//$content .= rrssb_hide_unitl_load();
         $content .= '
 			<style>
 			.no-margin li {margin: 0!important;}
