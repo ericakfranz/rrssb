@@ -27,7 +27,7 @@ function rrssb_js()
     wp_register_script('rrssb-modern-min-script', plugins_url('/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js', __FILE__ ) );
     wp_enqueue_script('rrssb-modern-min-script');
 	
-    wp_register_script('rrssb-min-script', plugins_url('/js/rrssb.min.js', __FILE__ ) );
+    wp_register_script('rrssb-min-script', plugins_url('/js/rrssb.min.js', __FILE__ ), array('jquery') );
     wp_enqueue_script('rrssb-min-script');
 }
 add_action('wp_enqueue_scripts', 'rrssb_js' );
