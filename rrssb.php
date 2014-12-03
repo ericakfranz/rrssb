@@ -114,125 +114,125 @@ function rrssb_hide_unitl_load()
 function rrssb_email_btn()
 {
 	$icon = file_get_contents('icons/mail.svg',true);
-    $content = '<li class="email">
+    	$content = '<li class="rrssb-email">
 		<a href="mailto:?subject='.urlencode(get_the_title()) .'&body=' .urlencode(get_permalink()). '" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">email</span></a></li>';
-    return $content;
+		<span class="rrssb-text">email</span></a></li>';
+    	return $content;
 }
 function rrssb_facebook_btn()
 {
 	$icon = file_get_contents('icons/facebook.svg',true);
-    $content = '<li class="facebook">
+    	$content = '<li class="rrssb-facebook">
 		<a href="https://www.facebook.com/sharer/sharer.php?u=' .urlencode(get_permalink() ) . ' " class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">facebook</span></a></li>';
-    return $content;
+		<span class="rrssb-text">facebook</span></a></li>';
+    	return $content;
 }
 function rrssb_linkedin_btn()
 {
 	$icon = file_get_contents('icons/linkedin.svg',true);
-    $content = '<li class="linkedin">
+    	$content = '<li class="rrssb-linkedin">
 		<a href="http://www.linkedin.com/shareArticle?mini=true&url=' .  urlencode(get_permalink()) . '&title=' . urlencode(get_the_title() ) . '" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">linkedin</span></a></li>';
+		<span class="rrssb-text">linkedin</span></a></li>';
     return $content;
 }
 function rrssb_twitter_btn()
 {
 	$icon = file_get_contents('icons/twitter.svg',true);
-    $content = '<li class="twitter">
+	$content = '<li class="rrssb-twitter">
 		<a href="http://twitter.com/home?status=' . urlencode(get_the_title() )  . ' - ' . urlencode(wp_get_shortlink() ). '" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">twitter</span></a></li>';
-    return $content;
+		<span class="rrssb-text">twitter</span></a></li>';
+    	return $content;
 }
 
 function rrssb_reddit_btn()
 {
 	$icon = file_get_contents('icons/reddit.svg',true);
-    $content = '<li class="reddit">
+    	$content = '<li class="rrssb-reddit">
 		<a href="http://www.reddit.com/submit?url=' . urlencode(get_permalink() ) . '" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'.$icon.'
 		</span>
-		<span class="text">reddit</span></a></li>';
-    return $content;
+		<span class="rrssb-text">reddit</span></a></li>';
+    	return $content;
 }
 
 function rrssb_google_btn()
 {
 	$icon = file_get_contents('icons/google_plus.svg',true);
-    $content = '<li class="googleplus">
+    	$content = '<li class="rrssb-googleplus">
 		<a href="https://plus.google.com/share?url=' . urlencode(get_the_title() ) . ' - ' . urlencode( get_permalink() ) .'" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">google+</span></a></li>';
-    return $content;
+		<span class="rrssb-text">google+</span></a></li>';
+    	return $content;
 }
 function rrssb_github_btn()
 {
 	$icon = file_get_contents('icons/github.svg',true);
-    $content = '<li class="github">
+    	$content = '<li class="rrssb-github">
 		<a href="https://github.com/###" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">github</span></a></li>';
-    return $content;
+		<span class="rrssb-text">github</span></a></li>';
+    	return $content;
 }
 function rrssb_instagram_btn()
 {
 	$icon = file_get_contents('icons/instagram.svg',true);
-    $content = '<li class="instagram">
+    	$content = '<li class="rrssb-instagram">
 		<a href="https://instagram.com/###" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">instagram</span></a></li>';
-    return $content;
+		<span class="rrssb-text">instagram</span></a></li>';
+    	return $content;
 }
 function rrssb_pinterest_btn()
 {
 	$icon = file_get_contents('icons/pinterest.svg',true);
-    $content = '<li class="pinterest">
+    	$content = '<li class="rrssb-pinterest">
 		<a href="https://pinterest.com/###" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">pinterest</span></a></li>';
-    return $content;
+		<span class="rrssb-text">pinterest</span></a></li>';
+    	return $content;
 }
 function rrssb_tumblr_btn()
 {
 	$icon = file_get_contents('icons/tumblr.svg',true);
-    $content = '<li class="tumblr">
+    	$content = '<li class="rrssb-tumblr">
 		<a href="https://tumblr.com/### class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">tumblr</span></a></li>';
-    return $content;
+		<span class="rrssb-text">tumblr</span></a></li>';
+    	return $content;
 }
 function rrssb_youtube_btn()
 {
 	$icon = file_get_contents('icons/youtube.svg',true);
-    $content = '<li class="youtube">
+    	$content = '<li class="rrssb-youtube">
 		<a href="https://youtube.com/###" class="popup">
-		<span class="icon">
+		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
-		<span class="text">youtube</span></a></li>';
-    return $content;
+		<span class="rrssb-text">youtube</span></a></li>';
+    	return $content;
 }
 
 
