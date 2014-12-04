@@ -1,5 +1,5 @@
 // Ridiculously Responsive Social Sharing Buttons
-// Team: @dbox, @seagoat
+// Team: @dbox, @joshuatuscan
 // Site: http://www.kurtnoble.com/labs/rrssb
 // Twitter: @therealkni
 
@@ -18,7 +18,7 @@
 
 // How to use: Add/remove buttons from config settings and $social-list.
 
-// config settings
+// Config settings
 $rrssb-txt: #fff !default;
 $rrssb-email: #0a88ff !default;
 $rrssb-facebook: #306199 !default;
@@ -29,24 +29,29 @@ $rrssb-googleplus: #e93f2e !default;
 $rrssb-reddit: #8bbbe3 !default;
 $rrssb-youtube: #df1c31 !default;
 $rrssb-pinterest: #b81621 !default;
+$rrssb-pocket: #ED4054 !default;
 $rrssb-github: #444 !default;
+$rrssb-instagram: #517fa4 !default;
 
+// Set the border radius for the buttons
 $rrssb-border-radius: 2px !default;
 
 $rrssb-main-font: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
-// Variable list for all social button colors to be iterated over. 
+// Variable list for all social button colors to be iterated over.
 $social-list: (
-	email			$rrssb-email,
-	facebook		$rrssb-facebook,
-	tumblr			$rrssb-tumblr,
-	linkedin		$rrssb-linkedin,
-	twitter			$rrssb-twitter,
-	googleplus		$rrssb-googleplus,
-	youtube			$rrssb-youtube,
-	reddit			$rrssb-reddit,
-	pinterest		$rrssb-pinterest,
-	github			$rrssb-github
+	rrssb-email				$rrssb-email,
+	rrssb-facebook			$rrssb-facebook,
+	rrssb-tumblr			$rrssb-tumblr,
+	rrssb-linkedin			$rrssb-linkedin,
+	rrssb-twitter			$rrssb-twitter,
+	rrssb-googleplus		$rrssb-googleplus,
+	rrssb-youtube			$rrssb-youtube,
+	rrssb-reddit			$rrssb-reddit,
+	rrssb-pinterest			$rrssb-pinterest,
+	rrssb-pocket			$rrssb-pocket,
+	rrssb-github			$rrssb-github,
+	rrssb-instagram 		$rrssb-instagram
 );
 
 @mixin transition($expression) {
@@ -82,7 +87,7 @@ $social-list: (
 	}
 }
 
-// the meat and potatoes
+// The meat and potatoes
 .rrssb-buttons {
 	@extend %border-box;
 	font-family: $rrssb-main-font;
@@ -95,6 +100,7 @@ $social-list: (
 		@extend %border-box;
 		float: left;
 		height: 100%;
+		line-height: 13px;
 		list-style: none;
 		margin: 0;
 		padding: 0 2.5px;
@@ -127,12 +133,12 @@ $social-list: (
 			text-align: center;
 			text-decoration: none;
 			text-transform: uppercase;
+			width: 100%;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
-			width: 100%;
 			@include transition(background-color 0.2s ease-in-out);
 
-			.icon {
+			.rrssb-icon {
 				display: block;
 				height: 100%;
 				left: 10px;
@@ -151,7 +157,7 @@ $social-list: (
 				}
 			}
 
-			.text {
+			.rrssb-text {
 				color: $rrssb-txt;
 			}
 
@@ -164,7 +170,7 @@ $social-list: (
 			a {
 				padding: 0;
 
-				.icon {
+				.rrssb-icon {
 					height: 100%;
 					left: auto;
 					margin: 0 auto;
@@ -173,7 +179,7 @@ $social-list: (
 					top: auto;
 					width: 100%;
 				}
-				.text {
+				.rrssb-text {
 					visibility: hidden;
 				}
 			}
@@ -187,13 +193,14 @@ $social-list: (
 			height: auto;
 
 			a {
+				border-radius: 0.2em;				
 				font-size: 15px; // fallback
 				font-size: 1vw;  // scales font with browser
+				line-height: 1vw;				
 				padding: 7% 0% 7% 12%;
-				border-radius: 0.2em;
 				@extend %backface-visibility;
 
-				.icon {
+				.rrssb-icon {
 					left: 7%;
 					padding-top: 0;
 					width: 12%;
@@ -201,18 +208,20 @@ $social-list: (
 					svg {
 						height: 100%;
 						width: 100%;
+						position: absolute;
+						top:0;						
 					}
 				}
 
-				.text {
+				.rrssb-text {
 					font-size: 15px;
-					font-size: 1vw; 
+					font-size: 1vw;
 					@extend %backface-visibility;
 				}
 
 				&:hover {
 					font-size: 15px;
-					font-size: 1vw; 
+					font-size: 1vw;
 					padding: 7% 0% 7% 12%;
 					border-radius: 0.2em;
 				}
@@ -228,7 +237,7 @@ $social-list: (
 			padding: 0 1.5px;
 
 			a {
-				.icon {
+				.rrssb-icon {
 					height: 100%;
 					padding-top: 0;
 
@@ -242,6 +251,7 @@ $social-list: (
 			}
 		}
 	}
+
 	&.tiny-format {
 		height: 22px;
 		position: relative;
@@ -253,7 +263,7 @@ $social-list: (
 				background-color: transparent;
 				padding: 0;
 
-				.icon {
+				.rrssb-icon {
 					svg {
 						height: 70%;
 						width: 100%;
@@ -270,7 +280,7 @@ $social-list: (
 
 				&.#{nth($s-name, 1)} {
 					a {
-						.icon {
+						.rrssb-icon {
 							svg {
 								path, polygon {
 									fill: nth($s-name, 2);
@@ -278,7 +288,7 @@ $social-list: (
 							}
 
 							&:hover {
-								.icon {
+								.rrssb-icon {
 									svg {
 										path, polygon {
 											fill: darken(nth($s-name, 2), 20%);
@@ -289,9 +299,7 @@ $social-list: (
 						}
 					}
 				}
-
 			}  // end @each directive
-
 		}
 	}
 }
