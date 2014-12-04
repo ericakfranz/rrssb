@@ -42,6 +42,14 @@ function rrssb_css()
 }
 add_action('wp_enqueue_scripts', 'rrssb_css' );
 
+/* Add shortcode */
+
+function rrssb_show_buttons_shortcode()
+{
+	return rrssb_main("");
+}
+add_shortcode('rrssb', 'rrssb_show_buttons_shortcode');
+
 /* Main function */
 
 function rrssb_main($content)
@@ -55,8 +63,8 @@ function rrssb_main($content)
 			.fix-line-height a {line-height: 1.3em;}
 			</style>
 			<div class="share-container clearfix">
-			<!-- buttons start here -->
-			<ul class="rrssb-buttons clearfix no-margin fix-line-height">';
+			<!-- buttons start here, prefix ul class with rrssb- to avoid conflicts -->
+			<rrssb-ul class="rrssb-buttons clearfix no-margin fix-line-height">';
 
 	
 	/*
@@ -79,7 +87,7 @@ function rrssb_main($content)
 	
         
         $content .= '
-			</ul>
+			</rrssb-ul>
 			<!-- buttons end here -->
 			</div>';
     }
