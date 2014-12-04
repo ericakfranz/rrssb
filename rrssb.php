@@ -21,7 +21,7 @@ You should have received a copy of the GNU General Public License along with thi
 function rrssb_js()
 {
 	// Use rrssb jqeury file.
-    wp_register_script('rrssb-jqeury', plugins_url('/js/vendor/jquery-1.9.1.min.js', __FILE__ ) );
+    wp_register_script('rrssb-jqeury', plugins_url('/js/vendor/jquery.1.10.2.min.js', __FILE__ ) );
     wp_enqueue_script('rrssb-jqeury');
     
     wp_register_script('rrssb-modern-min-script', plugins_url('/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js', __FILE__ ) );
