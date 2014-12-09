@@ -14,13 +14,11 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-
-
 /* CSS and JS */
 
 function rrssb_js()
 {
-	// Use rrssb jqeury file.
+    // Use rrssb jqeury file.
     wp_register_script('rrssb-jqeury', plugins_url('/js/vendor/jquery.1.10.2.min.js', __FILE__ ) );
     wp_enqueue_script('rrssb-jqeury');
     
@@ -44,26 +42,27 @@ add_action('wp_enqueue_scripts', 'rrssb_css' );
 
 /* Add shortcode */
 
-function rrssb_show_buttons_shortcode()
+/*function rrssb_show_buttons_shortcode()
 {
-	return rrssb_main("");
+	return rrssb_show_buttons_below_post("");
 }
-add_shortcode('rrssb', 'rrssb_show_buttons_shortcode');
+add_shortcode('rrssb', 'rrssb_show_buttons_shortcode');*/
 
-/* Main function */
 
-function rrssb_main($content)
+/* Show buttons above post */
+
+function rrssb_show_buttons_above_post($content)
 {
     if (is_single()) {
         
 		//$content .= rrssb_hide_unitl_load();
-        $content .= '
+        $rrssb_content .= '
 			<style>
 			.no-margin li {margin: 0!important;}
-			.fix-line-height a {line-height: 1.3em;}
+			.fix-line-height a {line-height: 1.3em;} 
 			</style>
 			<div class="share-container clearfix">
-			<!-- buttons start here, prefix ul class with rrssb- to avoid conflicts -->
+			<!-- buttons start here -->
 			<rrssb-ul class="rrssb-buttons clearfix no-margin fix-line-height">';
 
 	
@@ -72,29 +71,75 @@ function rrssb_main($content)
 	 * NOTE: Lines prefixed with `//` are ignored.
 	 *
 	 **/
-
-        $content .= rrssb_email_btn();
-        $content .= rrssb_facebook_btn();
-        $content .= rrssb_linkedin_btn();
-        $content .= rrssb_twitter_btn();
-        $content .= rrssb_reddit_btn();
-        $content .= rrssb_google_btn();
-        // $content .= rrssb_github_btn();
-        // $content .= rrssb_instagram_btn();
-        // $content .= rrssb_pinterest_btn();
-        // $content .= rrssb_tumblr_btn();
-        // $content .= rrssb_youtube_btn();
+ 
+        $rrssb_content .= rrssb_facebook_btn();
+        $rrssb_content .= rrssb_twitter_btn();
+        $rrssb_content .= rrssb_google_btn();
+        $rrssb_content .= rrssb_linkedin_btn(); 
+        $rrssb_content .= rrssb_reddit_btn();
+        $rrssb_content .= rrssb_email_btn();
+        // $rrssb_content .= rrssb_github_btn();
+        // $rrssb_content .= rrssb_instagram_btn();
+        // $rrssb_content .= rrssb_pinterest_btn();
+        // $rrssb_content .= rrssb_tumblr_btn();
+        // $rrssb_content .= rrssb_youtube_btn();
 	
         
-        $content .= '
+        $rrssb_content .= '
 			</rrssb-ul>
 			<!-- buttons end here -->
 			</div>';
+	$rrssb_content .= $content;
+    }
+    return $rrssb_content;
+}
+
+add_filter('the_content', 'rrssb_show_buttons_above_post');
+
+function rrssb_show_buttons_below_post($content)
+{
+    if (is_single()) {
+        
+		//$content .= rrssb_hide_unitl_load();
+        $rrssb_content .= '
+			<style>
+			.no-margin li {margin: 0!important;}
+			.fix-line-height a {line-height: 1.3em;} 
+			</style>
+			<div class="share-container clearfix">
+			<!-- buttons start here -->
+			<rrssb-ul class="rrssb-buttons clearfix no-margin fix-line-height">';
+
+	
+	/*
+	 * Edit below to reorder the buttons.
+	 * NOTE: Lines prefixed with `//` are ignored.
+	 *
+	 **/
+ 
+        $rrssb_content .= rrssb_facebook_btn();
+        $rrssb_content .= rrssb_twitter_btn();
+        $rrssb_content .= rrssb_google_btn();
+        $rrssb_content .= rrssb_linkedin_btn(); 
+        $rrssb_content .= rrssb_reddit_btn();
+        $rrssb_content .= rrssb_email_btn();
+        // $rrssb_content .= rrssb_github_btn();
+        // $rrssb_content .= rrssb_instagram_btn();
+        // $rrssb_content .= rrssb_pinterest_btn();
+        // $rrssb_content .= rrssb_tumblr_btn();
+        // $rrssb_content .= rrssb_youtube_btn();
+	
+        
+        $rrssb_content .= '
+			</rrssb-ul>
+			<!-- buttons end here -->
+			</div>';
+	$content .= $rrssb_content;
     }
     return $content;
 }
 
-add_filter('the_content', 'rrssb_main');
+add_filter('the_content', 'rrssb_show_buttons_below_post');
 
 /* Hide the buttons until after everything loads.
  * This prevents the buttons from displaying before
@@ -122,125 +167,125 @@ function rrssb_hide_unitl_load()
 function rrssb_email_btn()
 {
 	$icon = file_get_contents('icons/mail.svg',true);
-    	$content = '<li class="rrssb-email">
+    	$rrssb_content = '<li class="rrssb-email">
 		<a href="mailto:?subject='.urlencode(get_the_title()) .'&body=' .urlencode(get_permalink()). '" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">email</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_facebook_btn()
 {
 	$icon = file_get_contents('icons/facebook.svg',true);
-    	$content = '<li class="rrssb-facebook">
+    	$rrssb_content = '<li class="rrssb-facebook">
 		<a href="https://www.facebook.com/sharer/sharer.php?u=' .urlencode(get_permalink() ) . ' " class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">facebook</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_linkedin_btn()
 {
 	$icon = file_get_contents('icons/linkedin.svg',true);
-    	$content = '<li class="rrssb-linkedin">
+    	$rrssb_content = '<li class="rrssb-linkedin">
 		<a href="http://www.linkedin.com/shareArticle?mini=true&url=' .  urlencode(get_permalink()) . '&title=' . urlencode(get_the_title() ) . '" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">linkedin</span></a></li>';
-    return $content;
+    return $rrssb_content;
 }
 function rrssb_twitter_btn()
 {
 	$icon = file_get_contents('icons/twitter.svg',true);
-	$content = '<li class="rrssb-twitter">
+	$rrssb_content = '<li class="rrssb-twitter">
 		<a href="http://twitter.com/home?status=' . urlencode(get_the_title() )  . ' - ' . urlencode(wp_get_shortlink() ). '" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">twitter</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 
 function rrssb_reddit_btn()
 {
 	$icon = file_get_contents('icons/reddit.svg',true);
-    	$content = '<li class="rrssb-reddit">
+    	$rrssb_content = '<li class="rrssb-reddit">
 		<a href="http://www.reddit.com/submit?url=' . urlencode(get_permalink() ) . '" class="popup">
 		<span class="rrssb-icon">
 		'.$icon.'
 		</span>
 		<span class="rrssb-text">reddit</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 
 function rrssb_google_btn()
 {
 	$icon = file_get_contents('icons/google_plus.svg',true);
-    	$content = '<li class="rrssb-googleplus">
+    	$rrssb_content = '<li class="rrssb-googleplus">
 		<a href="https://plus.google.com/share?url=' . urlencode(get_the_title() ) . ' - ' . urlencode( get_permalink() ) .'" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">google+</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_github_btn()
 {
 	$icon = file_get_contents('icons/github.svg',true);
-    	$content = '<li class="rrssb-github">
+    	$rrssb_content = '<li class="rrssb-github">
 		<a href="https://github.com/###" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">github</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_instagram_btn()
 {
 	$icon = file_get_contents('icons/instagram.svg',true);
-    	$content = '<li class="rrssb-instagram">
+    	$rrssb_content = '<li class="rrssb-instagram">
 		<a href="https://instagram.com/###" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">instagram</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_pinterest_btn()
 {
 	$icon = file_get_contents('icons/pinterest.svg',true);
-    	$content = '<li class="rrssb-pinterest">
+    	$rrssb_content = '<li class="rrssb-pinterest">
 		<a href="https://pinterest.com/###" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">pinterest</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_tumblr_btn()
 {
 	$icon = file_get_contents('icons/tumblr.svg',true);
-    	$content = '<li class="rrssb-tumblr">
+    	$rrssb_content = '<li class="rrssb-tumblr">
 		<a href="https://tumblr.com/### class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">tumblr</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 function rrssb_youtube_btn()
 {
 	$icon = file_get_contents('icons/youtube.svg',true);
-    	$content = '<li class="rrssb-youtube">
+    	$rrssb_content = '<li class="rrssb-youtube">
 		<a href="https://youtube.com/###" class="popup">
 		<span class="rrssb-icon">
 		'. $icon . '
 		</span>
 		<span class="rrssb-text">youtube</span></a></li>';
-    	return $content;
+    	return $rrssb_content;
 }
 
 
