@@ -16,10 +16,9 @@
 <?php if ( 1 == get_option('show_buttons_below_post') ) echo 'checked="checked"'; ?> /> Show buttons below all posts. </label> <br />
 <label><input type="checkbox" name="show_buttons_above_post" value="1" 
 <?php if ( 1 == get_option('show_buttons_above_post') ) echo 'checked="checked"'; ?> /> Show buttons above all posts. </label> <br />
-<label><input type="checkbox" name="use_rrssb_jquery" value="1" 
-<?php if ( 1 == get_option('use_rrssb_jquery') ) echo 'checked="checked"'; ?> /> Use RRSSB's JQuery file. If RRSSB breaks your site, try unchecking this box. </label> <br />
+<!-- 
 <label><input type="checkbox" name="help_improve_rrssb" value="1" 
-<?php if ( 1 == get_option('help_improve_rrssb') ) echo 'checked="checked"'; ?> /> Help improve RRSSB by sharing usage information. It will never be made public. </label> <br />
+<?php if ( 1 == get_option('help_improve_rrssb') ) echo 'checked="checked"'; ?> /> Help improve RRSSB by sharing usage information. It will never be made public. </label> <br /> -->
 
 <h3>Enter CSS to fix or modify how your buttons look</h3>
 <p>Define css classes here.</p>

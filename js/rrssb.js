@@ -29,11 +29,7 @@
 		// loop through each instance of buttons
 		jQuery('.rrssb-buttons').each(function(index) {
 			var self = jQuery(this);
-<<<<<<< HEAD
-			var numOfButtons = jQuery('li', self).length;
-=======
 			var numOfButtons = jQuery('li:visible', self).length;
->>>>>>> master
 			var initBtnWidth = 100 / numOfButtons;
 
 			// set initial width of buttons
@@ -193,11 +189,7 @@
 		setPercentBtns();
 
 		// grab initial text width of each button and add as data attr
-<<<<<<< HEAD
-		jQuery('.rrssb-buttons li .text').each(function(index) {
-=======
 		jQuery('.rrssb-buttons li .rrssb-text').each(function(index) {
->>>>>>> master
 			var txtWdth = parseFloat(jQuery(this).width());
 			jQuery(this).closest('li').attr('data-size', txtWdth);
 		});
@@ -246,20 +238,6 @@
 		};
 	})();
 
-<<<<<<< HEAD
-	/*
-	 * Event listners
-	 */
-
-	jQuery('.rrssb-buttons a.popup').on('click', function(e){
-		var _this = jQuery(this);
-		popupCenter(_this.attr('href'), _this.find('.text').html(), 580, 470);
-		e.preventDefault();
-	});
-
-	// resize function
-	jQuery(window).resize(function () {
-=======
 	// init load
 	jQuery(document).ready(function(){
 		/*
@@ -271,23 +249,17 @@
 			popupCenter(_this.attr('href'), _this.find('.rrssb-text').html(), 580, 470);
 			e.preventDefault();
 		});
->>>>>>> master
 
 		// resize function
 		jQuery(window).resize(function () {
 
 			rrssbMagicLayout(sizeSmallBtns);
 
-<<<<<<< HEAD
-	// init load
-	jQuery(document).ready(function(){
-=======
 			waitForFinalEvent(function(){
 				rrssbMagicLayout(sizeSmallBtns);
 			}, 200, "finished resizing");
 		});
 
->>>>>>> master
 		rrssbInit();
 	});
 

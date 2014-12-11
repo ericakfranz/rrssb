@@ -1,14 +1,8 @@
 # Ridiculously Responsive Social Sharing Buttons
 
-<<<<<<< HEAD
-This is a Wordpress plugin adapted from the original RRSSB project you can find [here](https://github.com/kni-labs/rrssb).
-
-[<img align="right" src="media/rrssb-preview.png" width="359" height="auto"/>](http://kurtnoble.com/labs/rrssb/) Love them or hate them social sharing buttons appear to be with us for a while. It seemed like [we](http://www.kurtnoble.com) were constantly making custom buttons for every single project, so we decided to create a super flexible system that would work in any container.
-=======
 [<img align="right" src="media/rrssb-preview.png" width="359" height="auto"/>](http://kurtnoble.com/labs/rrssb/) Love them or hate them, social sharing buttons appear to be with us for a while. It seemed like [**we**](http://www.kurtnoble.com) were constantly making custom buttons for every single project, so we decided to create a super flexible system that would work in any container.
 
 RRSSB is built with [**SASS**](http://sass-lang.com/), so you can easily customize it by tweaking a few variables. SVGs allow for tiny file size and retina support. Add or remove icons as you see fit &mdash; the rest will fill in automagically in the container.
->>>>>>> master
 
 <img src="media/rrssb-preview.gif" width="100%" height="auto"/>
 
@@ -108,10 +102,7 @@ Requires [**calc**](http://caniuse.com/calc) and [**SVG**](http://caniuse.com/sv
 
 ### Version Notes
 
-<<<<<<< HEAD
-=======
 1.6.5 - Namespace CSS classes [(#42)](https://github.com/kni-labs/rrssb/issues/42) - Legacy HTML will be incompatible until class names updated.
->>>>>>> master
 
 ### About
 
