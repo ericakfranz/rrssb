@@ -1,0 +1,12 @@
+{
+    "name" : "RRSSB",
+    "slug" : "rrssb",
+    "download_url" : "https://github.com/ericakfranz/rrssb.zip",
+    "version" : "2.2.1",
+    "author" : "Erica Franz",
+    "author_homepage" : "https://fatpony.me/",
+    "tested" : "4.3",
+    "sections" : {
+        "description" : "Ridiculously Responsive Social Sharing Buttons adapted from https://github.com/kni-labs/rrssb."
+    }
+}

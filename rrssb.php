@@ -3,7 +3,7 @@
 Plugin Name: Ridiculously Responsive Social Sharing Buttons
 Plugin URI: https://github.com/ericakfranz/rrssb/
 Description: Ridiculously Responsive Social Sharing Buttons adapted from https://github.com/kni-labs/rrssb.
-Version: 2.2.0
+Version: 2.2.1
 Author: Erica Franz
 Author URI: https://fatpony.me/
 Date: 23 August 2015
@@ -13,6 +13,14 @@ License URI: https://www.gnu.org/licenses/gpl.html
 */
 
 include( 'rrssb_admin.php' );
+
+/* Automatic Plugin Update Checker */
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+    'https://github.com/ericakfranz/rrssb/metadata.json',
+    __FILE__,
+    'rrssb'
+);
 
 /* On Activation & Decativation */
 
