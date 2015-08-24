@@ -217,7 +217,7 @@ function rrssb_facebook_btn()
 
 function rrssb_google_btn()
 {
-	$icon = '<icon class="socicon socicon-googleplus"></icon>';
+	$icon = '<icon class="socicon socicon-google-plus"></icon>';
     	$rrssb_content = '<li class="rrssb-googleplus">
 		<a href="https://plus.google.com/share?url=' . urlencode(get_the_title() ) . ' - ' . urlencode( get_permalink() ) .'" class="popup">
 		<span class="rrssb-icon">
@@ -241,7 +241,7 @@ function rrssb_github_btn()
 
 function rrssb_email_btn()
 {
-	$icon = file_get_contents('icons/mail.svg',true);
+	$icon = '<icon class="dashicons dashicons-email"></icon>';
     	$rrssb_content = '<li class="rrssb-email">
 		<a href="mailto:?subject='.urlencode(get_the_title()) .'&body=' .urlencode(get_permalink()). '" class="popup">
 		<span class="rrssb-icon">
