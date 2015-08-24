@@ -1,9 +1,8 @@
 === Plugin Name ===
-Contributors: aarreedd, socialmediawithpb
-Donate link: http://alanreed.org/donate/
+Contributors: aarreedd, socialmediawithpb, ericakfranz
 Tags: Social, Sharing, Buttons, Ridiculously, Responsive
 Requires at least: 3.0
-Tested up to: 4.0.1
+Tested up to: 4.3
 Stable tag: trunk
 License: GNU General Public License (GPL) version 3
 License URI: https://www.gnu.org/licenses/gpl.html
@@ -24,7 +23,7 @@ There is now an Admin Menu that allows you to customize the look of your buttons
 
 == Installation ==
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
+1. Upload the `rrssb` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
@@ -39,9 +38,7 @@ Once you install the plugin, the RRSSB buttons will appear below all of you post
 
 = Who made Ridiculously Responsive Social Sharing Buttons? =
 
-It's on github. Check it out [here](https://github.com/alan-reed/rrssb).
-
-The original RRSSB project was converted into a Wordpress Plugin by [Alan Reed](http://www.alanreed.org).
+It's on github. Check it out [here](https://github.com/ericakfranz/rrssb).
 
 = How do I customize the plugin? =
 
@@ -64,6 +61,10 @@ Yes, use the shortcode [rrssb] to place the buttons anywhere!
 * NEW :	Add option to show buttons at top or bottom of posts
 * Bugfix: Fix problem with some link urls boing incorrect. 
 * Update : Change license. We are now GPL compliant. 
+= V2.2.0 - 08.23.2015 =
+* Changed order of social buttons
+* Update CSS styles
+* Replaced SVG icons with Socicon social font icons
 
 == Screenshots ==
 
