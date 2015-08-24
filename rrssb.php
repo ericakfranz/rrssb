@@ -95,8 +95,8 @@ add_action('wp_enqueue_scripts', 'rrssb_js' );
 
 function rrssb_css()
 {
-    wp_register_style('norm_stylesheet', plugins_url('css/normalize.min.css', __FILE__));
-    wp_enqueue_style('norm_stylesheet');
+    //wp_register_style('norm_stylesheet', plugins_url('css/normalize.min.css', __FILE__));
+    //wp_enqueue_style('norm_stylesheet');
 	
     wp_register_style('rrssb_stylesheet', plugins_url('css/rrssb.css', __FILE__));
     wp_enqueue_style('rrssb_stylesheet');
