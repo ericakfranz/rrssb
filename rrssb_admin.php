@@ -3,14 +3,14 @@
 /* Admin Menu */
 
 function admin_init_rrssb() {
-	register_setting('rrssb', 'show_email');
-	register_setting('rrssb', 'show_facebook');
-	register_setting('rrssb', 'show_linkedin');
 	register_setting('rrssb', 'show_twitter');
-	register_setting('rrssb', 'show_reddit');
+	register_setting('rrssb', 'show_facebook');
 	register_setting('rrssb', 'show_google');
-	register_setting('rrssb', 'show_pocket');
 	register_setting('rrssb', 'show_github');
+	register_setting('rrssb', 'show_email');
+	register_setting('rrssb', 'show_linkedin');
+	register_setting('rrssb', 'show_reddit');
+	register_setting('rrssb', 'show_pocket');
 	register_setting('rrssb', 'show_instagram');
 	register_setting('rrssb', 'show_pinterest');
 	register_setting('rrssb', 'show_tumblr');

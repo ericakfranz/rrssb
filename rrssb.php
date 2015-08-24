@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Ridiculously Responsive Social Sharing Buttons
-Plugin URI: https://github.com/alan-reed/rrssb
+Plugin URI: https://github.com/ericakfranz/rrssb/
 Description: Ridiculously Responsive Social Sharing Buttons adapted from https://github.com/kni-labs/rrssb.
-Version: 2.1
+Version: 2.2.0
 Author: Alan Reed
 Author URI: http://www.alanreed.org
 Date: 10 December 2014
@@ -17,20 +17,20 @@ include( 'rrssb_admin.php' );
 /* On Activation & Decativation */
 
 function activate_rrssb() {	
-	add_option('show_email' 	, 1);
-	add_option('show_facebook' 	, 1);
-	add_option('show_linkedin' 	, 1);
 	add_option('show_twitter' 	, 1);
-	add_option('show_reddit'	, 1);
+	add_option('show_facebook' 	, 1);
 	add_option('show_google'	, 1);
+	add_option('show_github'	, 1);
+	add_option('show_email' 	, 1);
+	add_option('show_linkedin' 	, 0);
+	add_option('show_reddit'	, 0);
 	add_option('show_pocket'	, 0);
-	add_option('show_github'	, 0);
 	add_option('show_instagram' , 0);
 	add_option('show_pinterest' , 0);
 	add_option('show_tumblr' 	, 0);
 	add_option('show_youtube' 	, 0);
 	
-	add_option('github_link'	, "alan-reed");
+	add_option('github_link'	, "ericakfranz");
 	add_option('instagram_link' , "");
 	add_option('pinterest_link'	, "");
 	add_option('tumblr_link'	, "");
@@ -38,7 +38,7 @@ function activate_rrssb() {
 	
 	add_option('give_rrssb_credit' 		, 0);
 	add_option('show_buttons_below_post', 1);
-	add_option('show_buttons_above_post', 1);
+	add_option('show_buttons_above_post', 0);
 	add_option('use_rrssb_jquery'		, 0);
 	add_option('help_improve_rrssb' 	, 0);
 	add_option('rrssb_css' 				, ".no-margin li {margin: 0!important;}");
@@ -124,18 +124,20 @@ function rrssb_show_buttons($rrssb_content)
 		<div class="share-container clearfix">
 		<ul class="rrssb-buttons clearfix ' . get_option('rrssb_css_classes') . '">';
 	
-	if ( 1 == get_option('show_facebook') ) 
-		$rrssb_content .= rrssb_facebook_btn();
 	if ( 1 == get_option('show_twitter') ) 
 		$rrssb_content .= rrssb_twitter_btn();
+	if ( 1 == get_option('show_facebook') ) 
+		$rrssb_content .= rrssb_facebook_btn();
 	if ( 1 == get_option('show_google') ) 
 		$rrssb_content .= rrssb_google_btn();
+	if ( 1 == get_option('show_github') ) 
+		$rrssb_content .= rrssb_github_btn();
+	if ( 1 == get_option('show_email') ) 
+		$rrssb_content .= rrssb_email_btn();
 	if ( 1 == get_option('show_linkedin') ) 
 		$rrssb_content .= rrssb_linkedin_btn();
 	if ( 1 == get_option('show_reddit') ) 
 		$rrssb_content .= rrssb_reddit_btn();
-	if ( 1 == get_option('show_email') ) 
-		$rrssb_content .= rrssb_email_btn();
 	if ( 1 == get_option('show_pinterest') ) 
 		$rrssb_content .= rrssb_pinterest_btn();	
 	if ( 1 == get_option('show_instagram') ) 
@@ -146,15 +148,13 @@ function rrssb_show_buttons($rrssb_content)
 		$rrssb_content .= rrssb_tumblr_btn();
 	if ( 1 == get_option('show_pocket') ) 
 		$rrssb_content .= rrssb_pocket_btn();
-	if ( 1 == get_option('show_github') ) 
-		$rrssb_content .= rrssb_github_btn();
 	
 	$rrssb_content .= '</ul>';
 	
 	if ( 1 == get_option('give_rrssb_credit') )
 		$rrssb_content .= '
-		<label><small>Buttons by 
-		<a href="https://wordpress.org/plugins/ridiculously-responsive-social-sharing-buttons/">RRSSB</a>
+		<label><small> 
+		<a href="https://github.com/ericakfranz/rrssb/">Get the RRSSB share plugin for your site.</a>
 		</small></label>';
 		
 	$rrssb_content .= '
@@ -191,6 +191,54 @@ add_filter('the_content', 'rrssb_show_buttons_below_post');
 
 /* Functions for each button */
 
+function rrssb_twitter_btn()
+{
+	$icon = '<icon class="socicon socicon-twitter"></icon>';
+	$rrssb_content = '<li class="rrssb-twitter">
+		<a href="http://twitter.com/home?status=' . urlencode(get_the_title() )  . ' - ' . urlencode(wp_get_shortlink() ). '" class="popup">
+		<span class="rrssb-icon">
+		  ' . $icon . '
+		</span>
+		<span class="rrssb-text">twitter</span></a></li>';
+    	return $rrssb_content;
+}
+
+function rrssb_facebook_btn()
+{
+	$icon = '<icon class="socicon socicon-facebook"></icon>';
+    	$rrssb_content = '<li class="rrssb-facebook">
+		<a href="https://www.facebook.com/sharer/sharer.php?u=' .urlencode(get_permalink() ) . ' " class="popup">
+		<span class="rrssb-icon">
+		  '. $icon . '
+		</span>
+		<span class="rrssb-text">facebook</span></a></li>';
+    	return $rrssb_content;
+}
+
+function rrssb_google_btn()
+{
+	$icon = '<icon class="socicon socicon-googleplus"></icon>';
+    	$rrssb_content = '<li class="rrssb-googleplus">
+		<a href="https://plus.google.com/share?url=' . urlencode(get_the_title() ) . ' - ' . urlencode( get_permalink() ) .'" class="popup">
+		<span class="rrssb-icon">
+		'. $icon . '
+		</span>
+		<span class="rrssb-text">google+</span></a></li>';
+    	return $rrssb_content;
+}
+
+function rrssb_github_btn()
+{
+	$icon = '<icon class="socicon socicon-github"></icon>';
+    	$rrssb_content = '<li class="rrssb-github">
+		<a href="https://github.com/'.get_option('github_link').'" target="_blank">
+		<span class="rrssb-icon">
+		'. $icon . '
+		</span>
+		<span class="rrssb-text">github</span></a></li>';
+    	return $rrssb_content;
+}
+
 function rrssb_email_btn()
 {
 	$icon = file_get_contents('icons/mail.svg',true);
@@ -203,21 +251,9 @@ function rrssb_email_btn()
     	return $rrssb_content;
 }
 
-function rrssb_facebook_btn()
-{
-	$icon = file_get_contents('icons/facebook.svg',true);
-    	$rrssb_content = '<li class="rrssb-facebook">
-		<a href="https://www.facebook.com/sharer/sharer.php?u=' .urlencode(get_permalink() ) . ' " class="popup">
-		<span class="rrssb-icon">
-		'. $icon . '
-		</span>
-		<span class="rrssb-text">facebook</span></a></li>';
-    	return $rrssb_content;
-}
-
 function rrssb_linkedin_btn()
 {
-	$icon = file_get_contents('icons/linkedin.svg',true);
+	$icon = '<icon class="socicon socicon-linkedin"></icon>';
     	$rrssb_content = '<li class="rrssb-linkedin">
 		<a href="http://www.linkedin.com/shareArticle?mini=true&url=' .  urlencode(get_permalink()) . '&title=' . urlencode(get_the_title() ) . '" class="popup">
 		<span class="rrssb-icon">
@@ -227,21 +263,9 @@ function rrssb_linkedin_btn()
     return $rrssb_content;
 }
 
-function rrssb_twitter_btn()
-{
-	$icon = file_get_contents('icons/twitter.svg',true);
-	$rrssb_content = '<li class="rrssb-twitter">
-		<a href="http://twitter.com/home?status=' . urlencode(get_the_title() )  . ' - ' . urlencode(wp_get_shortlink() ). '" class="popup">
-		<span class="rrssb-icon">
-		'. $icon . '
-		</span>
-		<span class="rrssb-text">twitter</span></a></li>';
-    	return $rrssb_content;
-}
-
 function rrssb_reddit_btn()
 {
-	$icon = file_get_contents('icons/reddit.svg',true);
+	$icon = '<icon class="socicon socicon-reddit"></icon>';
     	$rrssb_content = '<li class="rrssb-reddit">
 		<a href="http://www.reddit.com/submit?url=' . urlencode(get_permalink() ) . '" class="popup">
 		<span class="rrssb-icon">
@@ -251,33 +275,9 @@ function rrssb_reddit_btn()
     	return $rrssb_content;
 }
 
-function rrssb_google_btn()
-{
-	$icon = file_get_contents('icons/google_plus.svg',true);
-    	$rrssb_content = '<li class="rrssb-googleplus">
-		<a href="https://plus.google.com/share?url=' . urlencode(get_the_title() ) . ' - ' . urlencode( get_permalink() ) .'" class="popup">
-		<span class="rrssb-icon">
-		'. $icon . '
-		</span>
-		<span class="rrssb-text">google+</span></a></li>';
-    	return $rrssb_content;
-}
-
-function rrssb_github_btn()
-{
-	$icon = file_get_contents('icons/github.svg',true);
-    	$rrssb_content = '<li class="rrssb-github">
-		<a href="https://github.com/'.get_option('github_link').'" target="_blank">
-		<span class="rrssb-icon">
-		'. $icon . '
-		</span>
-		<span class="rrssb-text">github</span></a></li>';
-    	return $rrssb_content;
-}
-
 function rrssb_instagram_btn()
 {
-	$icon = file_get_contents('icons/instagram.svg',true);
+	$icon = '<icon class="socicon socicon-instagram"></icon>';
     	$rrssb_content = '<li class="rrssb-instagram">
 		<a href="https://instagram.com/'.get_option('instagram_link').'" target="_blank">
 		<span class="rrssb-icon">
@@ -289,7 +289,7 @@ function rrssb_instagram_btn()
 
 function rrssb_pinterest_btn()
 {
-	$icon = file_get_contents('icons/pinterest.svg',true);
+	$icon = '<icon class="socicon socicon-pinterest"></icon>';
     	$rrssb_content = '<li class="rrssb-pinterest">
 		<a href="https://pinterest.com/'.get_option('pinterest_link').'" target="_blank">
 		<span class="rrssb-icon">
@@ -301,7 +301,7 @@ function rrssb_pinterest_btn()
 
 function rrssb_tumblr_btn()
 {
-	$icon = file_get_contents('icons/tumblr.svg',true);
+	$icon = '<icon class="socicon socicon-tumblr"></icon>';
     	$rrssb_content = '<li class="rrssb-tumblr">
 		<a href="https://tumblr.com/'.get_option('tumblr_link').'" target="_blank">
 		<span class="rrssb-icon">
@@ -313,7 +313,7 @@ function rrssb_tumblr_btn()
 
 function rrssb_youtube_btn()
 {
-	$icon = file_get_contents('icons/youtube.svg',true);
+	$icon = '<icon class="socicon socicon-youtube"></icon>';
     	$rrssb_content = '<li class="rrssb-youtube">
 		<a href="https://youtube.com/'.get_option('youtube_link').'" target="_blank">
 		<span class="rrssb-icon">
@@ -325,7 +325,7 @@ function rrssb_youtube_btn()
 
 function rrssb_pocket_btn()
 {
-	$icon = file_get_contents('icons/pocket.svg',true);
+	$icon = '<icon class="socicon socicon-pocket"></icon>';
 	$rrssb_content = '<li class="rrssb-pocket">
 		<a href="https://getpocket.com/save?url=' . urlencode( get_permalink() ) . '" class="popup">
 		<span class="rrssb-icon">
