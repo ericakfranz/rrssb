@@ -6,9 +6,12 @@ Forked from the original [**RRSSB Plugin Repo**](http://github.com/alan-reed/rrs
 ### Version Notes
 
 2.2.0 - Forked
+Setup Gulp.
 Replace SVG images with Socicon social font icons.
 Change order of share buttons.
 Update styling of share buttons.
+
+2.2.1 - Added support for automatic plugin updates from GitHub repo
 
 ### About
 
