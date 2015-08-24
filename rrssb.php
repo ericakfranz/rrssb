@@ -4,9 +4,9 @@ Plugin Name: Ridiculously Responsive Social Sharing Buttons
 Plugin URI: https://github.com/ericakfranz/rrssb/
 Description: Ridiculously Responsive Social Sharing Buttons adapted from https://github.com/kni-labs/rrssb.
 Version: 2.2.0
-Author: Alan Reed
-Author URI: http://www.alanreed.org
-Date: 10 December 2014
+Author: Erica Franz
+Author URI: https://fatpony.me/
+Date: 23 August 2015
 
 License: GNU General Public License (GPL) version 3
 License URI: https://www.gnu.org/licenses/gpl.html
